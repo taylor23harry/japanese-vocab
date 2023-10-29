@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "pupeteer": "^0.0.1",
+    "unofficial-jisho-api": "^2.3.3"
+  }
+}
