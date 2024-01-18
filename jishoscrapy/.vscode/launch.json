@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Scrapy: Run Jisho",
+            "type": "python",
+            "request": "launch",
+            "module": "scrapy",
+            "args": ["crawl", "jisho", "-a", "item='日本語'"],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}

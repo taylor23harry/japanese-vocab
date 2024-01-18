@@ -13,15 +13,8 @@ class Playwright:
 
             content = await page.content()
 
-            word = page.get_by_text(item, exact=False).nth(3)
-            furigana = page.locator(".furigana")
-
-            translation = page.locator("meanings-wrapper")
-
+            meaning = page.locator('.//div[@class="meaning-meaning"]')
             
-            element = page.locator(".concept_light-representation > .text").first
-            element = page.locator(".meaning-tags").first
-            element = page.locator(".meaning-meaning").first
             time.sleep(500)
             await browser.close()
 

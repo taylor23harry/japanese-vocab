@@ -36,7 +36,6 @@ function searchForKanji(kanji) {
     return kanji;
 };
 
-let word = "に";
-
-
-
+let word = "日本語";
+let japanese = searchForKanji(word)
+let english = searchForPhrase("日本に行く")
