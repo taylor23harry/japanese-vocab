@@ -13,8 +13,11 @@ class Playwright:
 
             content = await page.content()
 
-            word = page.get_by_text("居る", exact=True).nth(3)
-            furigana = page.locator(".furigana").first
+            word = page.get_by_text(item, exact=False).nth(3)
+            furigana = page.locator(".furigana")
+
+            translation = page.locator("meanings-wrapper")
+
             
             element = page.locator(".concept_light-representation > .text").first
             element = page.locator(".meaning-tags").first

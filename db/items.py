@@ -12,7 +12,7 @@ class Noun(Item):
         super().__init__(word, furigana, hiragana, definition)
 
 class Verb(Item):
-    def __init_(self, stem, furigana, hiragana, definition, inflections):
+    def __init__(self, stem, furigana, hiragana, definition, inflections):
         super().__init__(stem, furigana, hiragana, definition)
         self.inflections = inflections
 
