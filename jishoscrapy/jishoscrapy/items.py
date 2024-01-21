@@ -6,9 +6,10 @@
 import scrapy
 
 
-class JishoscrapyItem(scrapy.Item):
+class JishoWordItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     furigana = scrapy.Field()
     hiragana = scrapy.Field()
     meaning = scrapy.Field()
+    word_type = scrapy.Field()

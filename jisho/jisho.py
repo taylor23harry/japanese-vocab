@@ -17,7 +17,3 @@ class Playwright:
             
             time.sleep(500)
             await browser.close()
-
-if __name__ == "__main__":
-    pw = Playwright()
-    asyncio.run(pw.scrape("行きます半袖"))

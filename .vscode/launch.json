@@ -15,7 +15,7 @@
             "type": "python",
             "request": "launch",
             "module": "scrapy",
-            "args": ["crawl", "jisho", "-a", "item=行きます半袖"],
+            "args": ["crawl", "jisho", "-a", "item=行ってきます"],
             "console": "integratedTerminal",
             "justMyCode": true,
             "cwd": "${workspaceFolder}/jishoscrapy"

@@ -1,5 +1,7 @@
 import scrapy
+from scrapy.loader import ItemLoader
 
+from jishoscrapy.items import JishoWordItem
 
 class JishoSpider(scrapy.Spider):
     name = "jisho"
@@ -17,15 +19,19 @@ class JishoSpider(scrapy.Spider):
         exact_match = response.xpath('.//div[@class="exact_block"]')
 
         representation = exact_match.xpath('.//div[@class="concept_light-representation"]')
-        furigana = exact_match.xpath('.//span[@class="furigana"]')
-        kanji = exact_match.xpath('.//span[@class="text"]')
+        furigana = exact_match.xpath('.//span[@class="furigana"]//span').getall()
+        kanji = exact_match.xpath('.//span[@class="text"]//text()').getall[:-1]
 
+        hiragana_word = '' # Word without Kanji
+        kanji_word = '' # Word with Kanji
         for f, k in zip(furigana, kanji):
-
-            yield {
-                "furigana": f.get(),
-                "kanji": k.get(),
-            }
+            f, k = f.xpath('.//text()').get().split(), k.get().split()
+            hiragana_word += f
+            if k:
+                kanji_word += k
+            else:
+                kanji_word += f
+            pass
 
         definitions = exact_match.xpath('.//div[@class="meanings-wrapper"]')
 
@@ -39,9 +45,12 @@ class JishoSpider(scrapy.Spider):
             word_type = word_type.xpath('.//text()')
             meaning = meaning.xpath('.//span[@class="meaning-meaning"]//text()')
 
-            yield {
-                "word_type": word_type.get(),
-                "meaning": meaning.get(),
-            }
+            if word_type == 'Other forms' or word_type == 'Notes':
+                continue
+
+            itemloader = ItemLoader(item=JishoWordItem(), response=response)
+            itemloader.add_value("word_type", word_type.get())
+            itemloader.add_value("meaning", meaning.get())
+            yield itemloader.load_item()
 
         pass
